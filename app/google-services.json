@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663411704905",
+    "project_id": "fir-auth-dc221",
+    "storage_bucket": "fir-auth-dc221.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663411704905:android:84d3cc119ec9273ebb2b98",
+        "android_client_info": {
+          "package_name": "com.crixaliz.firebaseauth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa5zZsVN_4478ObfSLrfmdBVKh78hag7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
