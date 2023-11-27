@@ -1,4 +1,4 @@
-package com.crixaliz.firebaseauth.data
+package com.crixaliz.firebaseauth.data.model
 
 import com.google.firebase.firestore.DocumentSnapshot
 

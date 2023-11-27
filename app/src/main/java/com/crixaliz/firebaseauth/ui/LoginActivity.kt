@@ -4,14 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import com.crixaliz.firebaseauth.R
 import com.crixaliz.firebaseauth.data.FireBaseRepository
 import com.crixaliz.firebaseauth.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
+    private val viewModel: UserViewModel by viewModels()
     private lateinit var binding: ActivityLoginBinding
-    private val repo = FireBaseRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btLogin.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
-            repo.login(email, password)
+            viewModel.login(email, password)
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
@@ -30,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btRegister.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
-            repo.register(email, password)
+            viewModel.register(email, password)
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()

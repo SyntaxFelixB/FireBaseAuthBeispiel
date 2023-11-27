@@ -2,6 +2,7 @@ package com.crixaliz.firebaseauth.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.crixaliz.firebaseauth.data.model.UserModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
@@ -33,6 +34,13 @@ class FireBaseRepository {
         }
     }
 
+
+
+
+
+    /*
+    // FIRE BASE AUTH METHODEN
+     */
     fun login(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
             db.collection("user")
@@ -54,16 +62,12 @@ class FireBaseRepository {
             val user = UserModel(
                 it.user?.uid!!,
                 0,
-                "empty"
+                "random"
             )
 
             db.collection("user")
                 .document(it.user?.uid!!)
-                .set(UserModel(
-                    it.user?.uid!!,
-                    0,
-                    "empty"
-                ).toFireBase())
+                .set(user.toFireBase())
 
             _currentAppUser.value = user
             _currentAuthUser.value = it.user
