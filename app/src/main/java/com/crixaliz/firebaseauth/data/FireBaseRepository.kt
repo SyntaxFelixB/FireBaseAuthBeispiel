@@ -1,5 +1,6 @@
 package com.crixaliz.firebaseauth.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.crixaliz.firebaseauth.data.model.UserModel
@@ -35,8 +36,17 @@ class FireBaseRepository {
     }
 
 
-
-
+    fun updateUser(user: UserModel) {
+        db.collection("user")
+            .document(auth.currentUser?.uid!!)
+            .set(
+                user.toFireBase()
+            ).addOnSuccessListener {
+                _currentAppUser.postValue(
+                    user
+                )
+            }
+    }
 
     /*
     // FIRE BASE AUTH METHODEN

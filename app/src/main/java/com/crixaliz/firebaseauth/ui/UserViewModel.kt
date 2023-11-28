@@ -1,7 +1,9 @@
 package com.crixaliz.firebaseauth.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.crixaliz.firebaseauth.data.FireBaseRepository
+import com.crixaliz.firebaseauth.data.model.UserModel
 
 class UserViewModel: ViewModel() {
     val repo = FireBaseRepository()
@@ -18,5 +20,19 @@ class UserViewModel: ViewModel() {
 
     fun logout() {
         repo.logout()
+    }
+
+    fun changeMoney(value: Int) {
+        val snapUser = currentAppUser.value
+        if(snapUser != null) {
+            val user = UserModel(
+                snapUser.uid,
+                snapUser.balance + value,
+                snapUser.userName
+            )
+            repo.updateUser(user)
+        } else {
+            Log.d("CHANGEMONEY", "Error user not found while changing money")
+        }
     }
 }

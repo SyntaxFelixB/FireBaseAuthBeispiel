@@ -4,7 +4,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 
 data class UserModel(
     val uid: String,
-    val balance: Int,
+    var balance: Int,
     val userName: String
 ) {
     companion object {

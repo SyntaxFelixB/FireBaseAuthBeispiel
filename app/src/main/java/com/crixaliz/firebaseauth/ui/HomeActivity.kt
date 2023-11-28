@@ -3,6 +3,7 @@ package com.crixaliz.firebaseauth.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.crixaliz.firebaseauth.R
 import com.crixaliz.firebaseauth.data.FireBaseRepository
@@ -20,11 +21,24 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel.currentAppUser.observe(this) {
+            binding.tvMoney.text = it?.balance.toString()
+            binding.tvUser.text = it?.userName
+        }
+
         binding.btLogoutHome.setOnClickListener {
             viewModel.logout()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        binding.btAdd.setOnClickListener {
+            viewModel.changeMoney(10)
+        }
+
+        binding.btRemove.setOnClickListener {
+            viewModel.changeMoney(-10)
         }
 
 
