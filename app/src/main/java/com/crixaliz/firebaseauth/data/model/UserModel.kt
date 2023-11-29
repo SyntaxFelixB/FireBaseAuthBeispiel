@@ -5,7 +5,8 @@ import com.google.firebase.firestore.DocumentSnapshot
 data class UserModel(
     val uid: String,
     var balance: Int,
-    val userName: String
+    val userName: String,
+    val image: String?
 ) {
     companion object {
         fun fromFireBase(snapshot: DocumentSnapshot): UserModel {
@@ -13,6 +14,7 @@ data class UserModel(
                 snapshot["uid"] as String,
                 (snapshot["balance"] as Long).toInt(),
                 snapshot["userName"] as String,
+                snapshot["image"] as String?
             )
         }
     }
@@ -21,7 +23,8 @@ data class UserModel(
         return mapOf(
             "uid" to uid,
             "balance" to balance,
-            "userName" to userName
+            "userName" to userName,
+            "image" to image
         )
     }
 }
